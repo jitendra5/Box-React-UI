@@ -1,6 +1,7 @@
 /**
  * Created by admin on 1/30/2017.
  */
+/** @jsx React.createElement */
 import React from "react";
 import {Link} from "react-router";
 export default class Layout extends React.Component{
@@ -18,7 +19,7 @@ export default class Layout extends React.Component{
                 <Link to="/addbox" >AddBox</Link>&nbsp;&nbsp;
                 <Link to="/listboxes"> ListBoxes</Link>
                 </div>
-                <div>{this.props.children}</div>
+                /*<div id="table">{this.props.children}</div>*/
                 </div>
         );
     }

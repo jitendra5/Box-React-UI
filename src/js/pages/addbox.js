@@ -1,6 +1,7 @@
 /**
  * Created by admin on 1/29/2017.
  */
+/** @jsx React.createElement */
 import React from "react";
 import reactCSS from 'reactcss';
 import SketchPicker from 'react-color';
