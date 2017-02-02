@@ -5,26 +5,32 @@
 import React from "react";
 import reactCSS from 'reactcss';
 import SketchPicker from 'react-color';
-export default class AddBox extends React.Component{
-    constructor() {
-        super();
+export default class AddBox extends React.Component {
+    constructor(props) {
+        super(props);
         this.msg = "View-A(AddBox)";
-        this.boxName= "Name";
-        this.boxWeight = "Weight";
-        this.boxColor = "Box Color";
-        this.boxCountry = "Destination Country";
 
-        }
-    state = {
+    this.state = {
+        boxWeight : '',
         displayColorPicker: false,
-        inputColor:"",
+        inputColor: "",
         color: {
             r: '241',
             g: '112',
             b: '19',
             a: '1'
         }
-    };
+    }
+}
+    getInitialState(){
+        return{
+            boxName: '',
+
+        boxColor :'',
+        boxCountry :''
+
+    }
+    }
     handleClick = () => {
         this.setState({ displayColorPicker: !this.state.displayColorPicker })
     };
@@ -38,10 +44,18 @@ export default class AddBox extends React.Component{
         this.setState({inputColor:color.hex});
 
     };
-     static handleChange(e){
-        const name=e.target.value;
-        console.log(name);
-    }
+
+static handleNameChange(e){
+   const name=e.target.value;
+   console.log(name);
+}
+/*static handleWeightChange(e){
+ //  const weight=e.target.value;
+   this.setState({boxName:e.target.value})
+   alert('Your favorite flavor is: ' + this.state.boxWeight);
+ //  console.log(weight);
+}*/
+
         render(){
             const styles = reactCSS({
                 'default': {
@@ -74,23 +88,21 @@ export default class AddBox extends React.Component{
             });
         return (
             <form>
-
                 <h1>{this.msg}</h1>
-                <h2>{this.boxName}</h2>
-                <input onChange={AddBox.handleChange.bind(this)}/>
-                <h2>{this.boxWeight}</h2>
-                <input/>
-                    <h2>{this.boxColor}</h2>
+                <h2>BoxName</h2>
+                <input onChange={AddBox.handleNameChange} value={this.state.boxName}/>
+                <h2>Weight</h2>
+                <input  onChange={AddBox.handleWeightChange} value={this.state.boxWeight}/>
+                    <h2>Color</h2>
                         <div>
-                                <input id="colorPicker" placeholder="click to show color picker" value ={ this.state.inputColor} onClick={ this.handleClick }/>
-
+                            <input id="colorPicker" placeholder="click to show color picker" value ={ this.state.inputColor} onClick={ this.handleClick }/>
                                 { this.state.displayColorPicker ? <div style={ styles.popover }>
                                     <div style={ styles.cover } onClick={ this.handleClose }/>
                                     <SketchPicker color={ this.state.color } onChange={ this.handleChange } />
                                 </div> : null }
 
                             </div>
-                    <h2>{this.boxCountry}</h2>
+                    <h2>Country</h2>
                     <select>
                         <option value="Sweden" defaultValue>Sweden</option>
                         <option value="China">China</option>
