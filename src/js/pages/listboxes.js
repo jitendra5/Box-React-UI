@@ -25,13 +25,19 @@ export default class ListBoxes extends React.Component {
     render(){
 
                 var tableStyle= {
-                    border:'2px',
+                    borderStyle:'solid',
+                    textAlign:'center',
+                    borderColor:'grey',
                     margin:'20px',
                     paddingLeft:'0',
                     color:'black',
                     height:'80%',
                     width:'80%'
-
+                }
+                var td={
+                    borderStyle:'solid',
+                    borderColor:'grey',
+                    textAlign:'center'
                 }
 
 
@@ -41,22 +47,21 @@ export default class ListBoxes extends React.Component {
                             <div>
                                 <table style={tableStyle}>
                                     <thead >
-                                    <tr >
-                                        <th >Receiver Name</th>
-                                        <th >Weight</th>
-                                        <th >Color</th>
-                                        <th >Shipping Cost</th>
+                                    <tr style={td}>
+                                        <th style={td}>Name</th>
+                                        <th style={td}>Weight</th>
+                                        <th style={td}>Color</th>
+                                        <th style={td}>Shipping Cost</th>
                                     </tr>
                                     </thead>
                                     <tbody >
                                     {this.state.items.map((data, key) => {
                                         return (
-                                            <tr key={key} >
-                                                <td >{data.name}</td>
-                                                <td >{data.weight}</td>
-                                                /*change backgroundcolor of each cell*/
-                                                <td style={{backgroundColor: 'blue'}}>{data.color}</td>
-                                                <td >{data.cost}</td>
+                                            <tr key={key} style={td}>
+                                                <td style={td}>{data.name}</td>
+                                                <td style={td}>{data.weight}</td>
+                                                <td style={{backgroundColor:data.color}}>{data.color}</td>
+                                                <td style={td}>{data.cost}</td>
                                             </tr>
                                         )
                                     })}

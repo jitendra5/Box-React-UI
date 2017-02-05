@@ -21,7 +21,39 @@ export default class AddBox1 extends React.Component {
     }
     onClickHandler () {
         if(this.refs['simpleForm'].isValid()) {
+            event.preventDefault();
             console.log(this.refs['simpleForm'].getFormValues());
+            $.ajax({
+                type:"POST",
+                url:'http://localhost:8888/SpringMvc/addbox',
+                contentType:"application/json",
+                dataType:"json",
+                data:JSON.stringify(this.refs['simpleForm'].getFormValues()),
+                success:function(response) {
+                    alert(JSON.stringify(response));
+                },
+                sendBefore: function () {
+                    alert("url sending");
+                },
+                complete: function () {
+                    alert("completed");
+                },
+                error: function (error) {
+                    alert(JSON.stringify(error));
+                }
+                //data:JSON.stringify(this.refs['simpleForm'].getFormValues())
+            });
+            /*fetch('http://localhost:8888/SpringMvc/addbox', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(this.refs['simpleForm'].getFormValues())
+            })
+                .catch((error) => {
+                    console.error(error);
+                });*/
         }
 
     }
@@ -31,7 +63,7 @@ export default class AddBox1 extends React.Component {
         this.setState({value: event.target.value});
     }
     handleSubmit(event) {
-        alert('Form submitted');
+        alert('Form submitted sucessfully');
         event.preventDefault();
             $.ajax({
                 type:"POST",
@@ -45,7 +77,7 @@ export default class AddBox1 extends React.Component {
     }
 
     colorChange(event){
-        this.setState({inputColor:event.target.value});
+        //this.setState({inputColor:event.target.value});
     }
     handleClick = (event) => {
         this.setState({ displayColorPicker: !this.state.displayColorPicker });
@@ -158,7 +190,7 @@ export default class AddBox1 extends React.Component {
                         value ={ this.state.inputColor}
                         element={
                         <div >
-                        <input style={ styles.inputTag } id="colorPicker" placeholder="click to show color picker" value ={ this.state.inputColor} onClick={ this.handleClick } onChange={this.colorChange}/>
+                        <input style={ styles.inputTag } id="colorPicker" placeholder="click to show color picker" value ={ this.state.inputColor} onClick={ this.handleClick } onBlur={this.colorChange}/>
                         { this.state.displayColorPicker ? <div style={ styles.popover }>
                             <div style={ styles.cover } onClick={ this.handleClose }/>
                             <SketchPicker color={ this.state.color } onChange={ this.handleChange } disableAlpha='false' />
