@@ -1,19 +1,17 @@
 /** @jsx React.createElement */
 import React from "react";
-import Fetch from "react-fetch";
-import reactCSS from 'reactcss';
 export default class ListBoxes extends React.Component {
     constructor() {
         super();
         this.msg = "View-B(ListBoxes)";
         this.state = { items: [] };
     }
-
+    /*fetch(`http://localhost:8888/SpringMvc/listboxes`,{type:'POST',dataType:'json',success:json})
+     .then(function json(response) {
+     console.log(response);
+     })*/
     componentDidMount() {
-        /*fetch(`http://localhost:8888/SpringMvc/listboxes`,{type:'POST',dataType:'json',success:json})
-            .then(function json(response) {
-                console.log(response);
-            })*/
+
         $.ajax({
             url: "http://localhost:8888/SpringMvc/listboxes"
         }).then(function(data) {

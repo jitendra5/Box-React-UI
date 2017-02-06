@@ -31,12 +31,10 @@ export default class AddBox1 extends React.Component {
                 data:JSON.stringify(this.refs['simpleForm'].getFormValues()),
                 success:function(response) {
                     alert(JSON.stringify(response));
+                    alert("Form is submitted");
                 },
                 sendBefore: function () {
                     alert("url sending");
-                },
-                complete: function () {
-                    alert("completed");
                 },
                 error: function (error) {
                     alert(JSON.stringify(error));

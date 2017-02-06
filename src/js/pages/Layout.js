@@ -19,7 +19,7 @@ export default class Layout extends React.Component{
                 <Link to="/addbox" >AddBox</Link>&nbsp;&nbsp;
                 <Link to="/listboxes"> ListBoxes</Link>
                 </div>
-                /*<div id="table">{this.props.children}</div>*/
+                <div id="table">{this.props.children}</div>
                 </div>
         );
     }
